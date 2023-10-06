@@ -1,0 +1,10 @@
+/* BASIC STYLES HERE */
+textarea {
+  height: 300px;
+  width: 100%;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
