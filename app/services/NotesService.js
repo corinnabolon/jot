@@ -1,26 +1,23 @@
 import { AppState } from "../AppState.js"
 import { Note } from "../models/Note.js"
+import { saveState } from "../utils/Store.js"
 
+
+function _saveNotes() {
+  saveState("notes", AppState.notes)
+}
 
 class NotesService {
 
-
-  setActiveNote(newNote) {
-    console.log('[Notes SERVICE] setActiveNote, NewNote:', newNote)
-    let activeNoteId = newNote.id
-    console.log("Active note id:", activeNoteId)
-    let activeNote = AppState.notes.find(note => note.id == activeNoteId)
-    console.log("Active note:", activeNote)
-    if (activeNote.updatedDate == null) {
-      activeNote.updatedDate = activeNote.createdDate
-    }
-    AppState.activeNote = activeNote
-    console.log(activeNote, AppState.activeNote)
-  }
-
-  saveActiveNote(noteContents) {
-    console.log("Pressed Save Button", noteContents)
-    //TODO Update .contents of the active note to match noteContents
+  saveActiveNote(noteContent) {
+    console.log("NoteServices activated, content:", noteContent)
+    let activeNote = AppState.activeNote
+    activeNote.content = noteContent
+    console.log("active note's content:", activeNote.content, "AppState notes", AppState.notes)
+    activeNote.updatedDate = new Date()
+    AppState.emit("activeNote")
+    console.log("This is the notes array after a note is saved.", AppState.notes)
+    _saveNotes()
   }
 
   createNote(noteData) {
@@ -29,9 +26,34 @@ class NotesService {
     AppState.notes.push(newNote)
     console.log(AppState.notes)
     AppState.emit('notes')
-    this.setActiveNote(newNote)
-
+    let noteId = newNote.id
+    this.setActiveNote(noteId)
+    _saveNotes()
   }
+
+  setActiveNote(noteId) {
+    let activeNote = AppState.notes.find(note => note.id == noteId)
+    console.log("Active note:", activeNote)
+    AppState.activeNote = activeNote
+    console.log(activeNote, AppState.activeNote)
+    AppState.emit("activeNote")
+  }
+
+  removeNote(noteId) {
+    let notes = AppState.notes
+    let noteIndex = notes.findIndex(note => note.id == noteId)
+
+    if (noteIndex == -1) {
+      throw new Error(`Could not find a note index with this ID: ${noteId}`)
+    }
+    notes.splice(noteIndex, 1)
+    _saveNotes()
+
+    AppState.emit('notes')
+  }
+
+
+
 
 
 

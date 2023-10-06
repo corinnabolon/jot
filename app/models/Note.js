@@ -6,20 +6,20 @@ export class Note {
     this.id = generateId()
     this.title = data.title
     this.content = data.content || "No content"
-    this.color = null
+    this.color = data.color || "#FF0000"
     this.createdDate = data.createdDate ? new Date(data.createdDate) : new Date()
-    this.updatedDate = null
+    this.updatedDate = data.updatedDate ? new Date(data.updatedDate) : new Date()
   }
 
   get NoteCardsTemplate() {
     return `
-    <li>${this.title}</li>
+    <p onclick="app.NotesController.setActiveNote('${this.id}')" role="button"><i class="mdi mdi-pen" style="color: ${this.color}"></i>${this.title}</button>
     `
   }
 
 
   get ActiveNoteTemplate() {
-    return `          <div id="active-note-input">
+    return `         
     <p>Title: ${this.title}</p>
     <p>Created at: ${this.createdDate.toLocaleString()}</p>
     <p>Updated at: ${this.updatedDate.toLocaleString()}</p>
@@ -28,13 +28,16 @@ export class Note {
       <p>Words: <span>0</span></p>
       <p>Chatacters: <span>0</span></p>
     </div>
-    <button onclick="app.NotesController.saveActiveNote('${this.content}')" class="btn btn-success")>Save</button>
+    <button onclick="app.NotesController.saveActiveNote()" class="btn save-button" style="background-color: ${this.color}")>Save</button>
     </div>
     </div>
     <div>
-      <textarea class="bg-dark text-light rounded fs-5">${this.content}</textarea>
+      <textarea id="note-content" class="bg-dark text-light rounded fs-5 textbox-border" style="border-color: ${this.color};">${this.content}</textarea>
     </div>
-  </div>`
+    <div class="d-flex justify-content-center">
+    <button onclick="app.NotesController.removeNote('${this.id}')" class="btn btn-danger">Delete Note</button>
+    </div>
+  `
   }
 
 }

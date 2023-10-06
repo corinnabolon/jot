@@ -1,10 +1,18 @@
 /* BASIC STYLES HERE */
 textarea {
   height: 300px;
-  width: 100%;
+  width: 90%;
 }
 
 p {
   margin: 0;
   padding: 0;
+}
+
+.save-button {
+  text-shadow: 1px 0 0 white;
+}
+
+.textbox-border {
+  border: 3px solid;
 }

@@ -24,7 +24,7 @@ class ObservableAppState extends EventEmitter {
 
   // NOTE Used to load initial data
   init() {
-
+    this.notes = loadState("notes", [Note])
   }
 
 }

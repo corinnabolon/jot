@@ -26,6 +26,7 @@ export class NotesController {
 
     // LISTENERS/OBSERVERS
     AppState.on("notes", _drawNotes)
+    AppState.on("activeNote", _drawActiveNote)
   }
 
 
@@ -47,8 +48,26 @@ export class NotesController {
     }
   }
 
-  saveActiveNote(noteContents) {
-    notesService.saveActiveNote(noteContents)
+  saveActiveNote() {
+    let noteContent = document.getElementById('note-content').value
+    console.log('[NOTE CONTROLLER] noteContent:', noteContent)
+    notesService.saveActiveNote(noteContent)
+    Pop.success("Your note has been saved.")
+  }
+
+  setActiveNote(noteId) {
+    notesService.setActiveNote(noteId)
+  }
+
+  async removeNote(noteId) {
+    let wantsToDelete = await Pop.confirm("Are you sure you want to delete this note?")
+
+    if (!wantsToDelete) {
+      return
+    }
+    console.log('They want to delete the note!');
+    notesService.removeNote(noteId)
+
   }
 
 }

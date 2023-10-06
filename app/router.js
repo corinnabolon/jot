@@ -17,9 +17,13 @@ export const router = [
       <div>
       <form onsubmit="app.NotesController.createNote(event)">
       <label for="title">Title</label>
-      <input id="title" name="title" type="text" required minlength="1" maxlength="25" placeholder="New Note Title">
+      <input id="title" name="title" type="text" required minlength="3" maxlength="15" placeholder="New Note Title">
       </input>
-      <button type="submit" class="btn btn-success">Create New Note</button>
+      <button type="submit" class="btn btn-success">Create New Note</button> 
+      <div class="mb-2">
+      <label for="color">Color</label>
+      <input class="color" id="color" type="color" name="color" value="#000000">
+    </div>
       </form>
       </div>
         <div>
