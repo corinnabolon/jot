@@ -1,4 +1,15 @@
 /* BASIC STYLES HERE */
+:root {
+  --note-blue: #0802A3;
+  --note-pink: #FF4B91;
+  --note-salmon: #FF7676;
+  --note-yellow: #ffe39b;
+}
+
+body {
+  background-color: var(--note-yellow)
+}
+
 textarea {
   height: 300px;
   width: 90%;
@@ -9,10 +20,58 @@ p {
   padding: 0;
 }
 
+.navbar-color {
+  background-color: var(--note-blue);
+}
+
+.navbar-text {
+  color: var(--note-pink);
+}
+
 .save-button {
   text-shadow: 1px 0 0 white;
 }
 
 .textbox-border {
   border: 3px solid;
+}
+
+.title-image {
+  border-radius: 75%;
+  height: 300px;
+  width: 30vw;
+  object-fit: cover;
+}
+
+.title-div-height {
+  height: 100vh;
+}
+
+.title-input {
+  width: 275px;
+}
+
+.font-nunito {
+  font-family: 'Nunito', sans-serif;
+}
+
+.font-worksans {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.top-box {
+  border: 2px solid var(--note-salmon);
+}
+
+.create-button {
+  background-color: var(--note-salmon);
+}
+
+.create-button:hover {
+  background-color: var(--note-pink);
+}
+
+.bottom-box {
+  border: 2px solid var(--note-salmon);
+  height: 100vh;
 }

@@ -10,20 +10,23 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.1.96/css/materialdesignicons.min.css"
     integrity="sha512-NaaXI5f4rdmlThv3ZAVS44U9yNWJaUYWzPhvlg5SC7nMRvQYV9suauRK3gVbxh7qjE33ApTPD+hkOW78VSHyeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Work+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="assets/style/main.css">
   <link rel="stylesheet" href="assets/style/style.css">
-  <title>jot</title>
+  <title>Jot</title>
 </head>
 
 <body>
   <!-- SECTION -->
   <header>
-    <nav class="navbar navbar-dark navbar-expand bg-dark text-light no-select">
-      <a class="navbar-brand ms-3" href="#">
+    <nav class="navbar navbar-expand navbar-color text-light no-select">
+      <a class="navbar-brand ms-3 d-flex align-items-center" href="#">
         <img src="https://codeworks.blob.core.windows.net/public/assets/img/cw-mark.png" height="45" alt=""
           loading="lazy">
-        <span class="ms-2">jot</span>
+        <span class="ms-2 ps-1 pt-3 fw-bold fs-2 navbar-text font-nunito">Jot</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +35,6 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <!-- NAVLINKS -->
-          <a href="#/about" class="nav-link">About</a>
         </div>
       </div>
     </nav>
@@ -42,47 +44,48 @@
   <main id="router-view">
     <!-- PRIMARY VIEWPORT -->
     <!-- <div class="container-fluid">
-      <section class="row">
-        <div class="col-12 col-md-3 border">
-          <div>
+      <section class="row class">
+        <div class="col-12 col-md-3">
+          <div class="fs-3 fw-bold font-nunito top-box mt-4 p-3">
             <form onsubmit="app.NotesController.createNote(event)">
               <label for="title">Title</label>
-              <input id="title" name="title" type="text" required minlength="1" maxlength="25"
-                placeholder="New Note Title">
+              <input id="title" name="title" type="text" required minlength="3" maxlength="15"
+                placeholder="New Note Title" class="fs-4 title-input">
               </input>
-              <button type="submit" class="btn btn-success">Create New Note</button>
+              <div class="my-2">
+                <label for="color">Color</label>
+                <input class="color" id="color" type="color" name="color" value="#0802A3">
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn create-button mt-2">Create New Note</button>
+                </div>
+              </div>
             </form>
           </div>
-          <div>
-            <p>List of Journals</p>
-          </div>
-          <div id="notes-count"></div>
-          <div>
+          <div class="mt-3 pt-2 ps-2 font-nunito bottom-box">
+            <p class="fs-2 fw-bold">List of Notes:</p>
+          <div id="notes-count" class="fw-bold font-nunito"></div>
             <div id="notes-list">
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-9 border">
-          <div id="active-note-input">
-            <p>Title: ${this.title}</p>
-            <p>Created at: ${this.createdDate}</p>
-            <p>Updated at: ${this.updatedDate}</p>
-            <div>
-              <p>Words: <span>0</span></p>
-              <p>Chatacters: <span>0</span></p>
-            </div>
-            <div>
-              <textarea class="bg-dark text-light rounded fs-5">${this.content}</textarea>
+        <div class="col-12 col-md-8">
+          <div>
+            <div id="active-note-input">
+              <div class="d-flex align-items-center justify-content-center title-div-height">
+                <img
+                  src="https://images.unsplash.com/photo-1517971071642-34a2d3ecc9cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="a journal" class="title-image">
+              </div>
             </div>
           </div>
         </div>
       </section>
-    </div>` -->
+    </div> -->
 
   </main>
 
   <!-- SECTION -->
-  <footer class="bg-dark text-light">
+  <footer class="navbar-color text-light">
     <div class="text-center no-select">
       <p class="mb-0"><small>Made with 💖 by CodeWorks</small></p>
     </div>

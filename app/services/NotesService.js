@@ -15,6 +15,8 @@ class NotesService {
     activeNote.content = noteContent
     console.log("active note's content:", activeNote.content, "AppState notes", AppState.notes)
     activeNote.updatedDate = new Date()
+    activeNote.wordCount = activeNote.content.split(' ').length
+    activeNote.characterCount = activeNote.content.length
     AppState.emit("activeNote")
     console.log("This is the notes array after a note is saved.", AppState.notes)
     _saveNotes()

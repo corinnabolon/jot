@@ -67,6 +67,7 @@ export class NotesController {
     }
     console.log('They want to delete the note!');
     notesService.removeNote(noteId)
+    Pop.success("Your note has been removed.")
 
   }
 
