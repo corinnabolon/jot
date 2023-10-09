@@ -12,12 +12,7 @@ class ObservableAppState extends EventEmitter {
 
 
   /** @type {import('./models/Note.js').Note[]} */
-  notes = [
-    new Note({
-      title: "Test Note's Title",
-      content: "Test Note's Sample Content"
-    })
-  ]
+  notes = []
 
   /** @type {import('./models/Note.js').Note|null} */
   activeNote = null

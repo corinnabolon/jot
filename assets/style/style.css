@@ -3,7 +3,8 @@
   --note-blue: #0802A3;
   --note-pink: #FF4B91;
   --note-salmon: #FF7676;
-  --note-yellow: #ffe39b;
+  --note-yellow: #fdd161;
+  --textarea-color: #192238;
 }
 
 body {
@@ -12,12 +13,16 @@ body {
 
 textarea {
   height: 300px;
-  width: 90%;
+  width: 100%;
 }
 
 p {
   margin: 0;
   padding: 0;
+}
+
+.textarea-color {
+  background-color: var(--textarea-color);
 }
 
 .navbar-color {
@@ -28,8 +33,26 @@ p {
   color: var(--note-pink);
 }
 
+.navbar-dot {
+  color: var(--note-salmon)
+}
+
 .save-button {
-  text-shadow: 1px 0 0 white;
+  background-color: var(--note-blue);
+  color: var(--note-yellow);
+}
+
+.delete-button {
+  background-color: var(--note-salmon);
+  border: 2px dotted var(--note-blue)
+}
+
+.delete-button:hover {
+  background-color: rgb(177, 28, 28);
+}
+
+.save-button:hover {
+  color: var(--note-pink);
 }
 
 .textbox-border {

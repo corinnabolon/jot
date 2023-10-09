@@ -6,7 +6,7 @@ export class Note {
     this.id = generateId()
     this.title = data.title
     this.content = data.content || ""
-    this.color = data.color || "#FF0000"
+    this.color = data.color || "#0802A3"
     this.createdDate = data.createdDate ? new Date(data.createdDate) : new Date()
     this.updatedDate = data.updatedDate ? new Date(data.updatedDate) : new Date()
     this.wordCount = this.content.length > 0 ? this.content.split(' ').length : 0
@@ -23,7 +23,7 @@ export class Note {
 
   get ActiveNoteTemplate() {
     return `         
-    <p>Title: ${this.title}</p>
+    <p class="fs-3 fw-bold mt-3">Title: ${this.title}</p>
     <p>Created at: ${this.createdDate.toLocaleString()}</p>
     <p>Updated at: ${this.updatedDate.toLocaleString()}</p>
     <div class="d-flex justify-content-between">
@@ -31,16 +31,24 @@ export class Note {
       <p>Words: <span>${this.wordCount}</span></p>
       <p>Characters: <span>${this.characterCount}</span></p>
     </div>
-    <button onclick="app.NotesController.saveActiveNote()" class="btn save-button" style="background-color: ${this.color}")>Save</button>
+    <button onclick="app.NotesController.saveActiveNote()" class="btn save-button fw-bold" style="background-color: ${this.color}")>Save</button>
     </div>
     </div>
-    <div>
-      <textarea id="note-content" class="bg-dark text-light rounded fs-5 textbox-border" style="border-color: ${this.color};">${this.content}</textarea>
+    <div class="my-3">
+      <textarea id="note-content" class="textarea-color text-light rounded fs-5 textbox-border" minlength=1 maxlength=100000 style="border-color: ${this.color};">${this.content}</textarea>
     </div>
     <div class="d-flex justify-content-center">
-    <button onclick="app.NotesController.removeNote('${this.id}')" class="btn btn-danger">Delete Note</button>
+    <button onclick="app.NotesController.removeNote('${this.id}')" class="btn delete-button fw-bold">Delete Note</button>
     </div>
   `
+  }
+
+  get noteClosedTemplate() {
+    return `<div class="d-flex align-items-center justify-content-center title-div-height">
+    <img
+      src="https://images.unsplash.com/photo-1517971071642-34a2d3ecc9cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80"
+      alt="a journal" class="title-image">
+  </div>`
   }
 
 

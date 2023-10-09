@@ -15,13 +15,17 @@ function _drawNotes() {
 
 function _drawActiveNote() {
   let note = AppState.activeNote
-  console.log("active note from appstate", note)
-  setHTML("active-note-input", note.ActiveNoteTemplate)
+  if (note != null) {
+    setHTML("active-note-input", note.ActiveNoteTemplate)
+  } else if (AppState.notes.length > 0) {
+    setHTML("active-note-input", AppState.notes[0].noteClosedTemplate)
+  } else {
+    setHTML("active-note-input", "")
+  }
 }
 
 export class NotesController {
   constructor() {
-    console.log('Notes Controller is loaded', AppState.notes);
     _drawNotes()
 
     // LISTENERS/OBSERVERS
@@ -35,9 +39,7 @@ export class NotesController {
       event.preventDefault()
 
       const form = event.target
-      console.log("Testing create note", form)
       const eventData = getFormData(form)
-      console.log("this is the event data", eventData)
       notesService.createNote(eventData)
       Pop.success('Note successfully created!')
       form.reset()
@@ -50,13 +52,39 @@ export class NotesController {
 
   saveActiveNote() {
     let noteContent = document.getElementById('note-content').value
-    console.log('[NOTE CONTROLLER] noteContent:', noteContent)
-    notesService.saveActiveNote(noteContent)
-    Pop.success("Your note has been saved.")
+    if (noteContent == "") {
+      Pop.toast("Your note has no content.")
+    } else {
+      notesService.saveActiveNote(noteContent)
+      Pop.success("Your note has been saved.")
+    }
   }
 
   setActiveNote(noteId) {
-    notesService.setActiveNote(noteId)
+    let activeNote = AppState.activeNote
+    if (activeNote != null) {
+      let noteContent = document.getElementById('note-content').value
+      if (noteContent != activeNote.content) {
+        this.checkSave(noteId)
+      } else {
+        notesService.setActiveNote(noteId)
+      }
+    }
+    else {
+      notesService.setActiveNote(noteId)
+    }
+  }
+
+  async checkSave(noteId) {
+    let wantsToSave = await Pop.confirmSave("Your changes have not been saved. Would you like to save them?")
+    if (wantsToSave) {
+      this.saveActiveNote()
+      notesService.setActiveNote(noteId)
+    } else {
+      Pop.success("Your changes were not saved.")
+      notesService.setActiveNote(noteId)
+    }
+
   }
 
   async removeNote(noteId) {
@@ -65,10 +93,14 @@ export class NotesController {
     if (!wantsToDelete) {
       return
     }
-    console.log('They want to delete the note!');
     notesService.removeNote(noteId)
     Pop.success("Your note has been removed.")
 
+  }
+
+  returnToHomeScreen() {
+    let note = AppState.activeNote
+    setHTML("active-note-input", note.noteClosedTemplate)
   }
 
 }

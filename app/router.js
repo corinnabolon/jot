@@ -24,7 +24,7 @@ export const router = [
                 <label for="color">Color</label>
                 <input class="color" id="color" type="color" name="color" value="#0802A3">
                 <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn create-button mt-2">Create New Note</button>
+                  <button type="submit" class="btn create-button mt-2 text-dark fw-bold">Create New Note</button>
                 </div>
               </div>
             </form>
@@ -38,7 +38,7 @@ export const router = [
         </div>
         <div class="col-12 col-md-8">
           <div>
-            <div id="active-note-input">
+            <div id="active-note-input" class="font-worksans mb-3 ms-3">
               <div class="d-flex align-items-center justify-content-center title-div-height">
                 <img
                   src="https://images.unsplash.com/photo-1517971071642-34a2d3ecc9cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80"

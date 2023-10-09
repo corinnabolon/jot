@@ -10,23 +10,18 @@ function _saveNotes() {
 class NotesService {
 
   saveActiveNote(noteContent) {
-    console.log("NoteServices activated, content:", noteContent)
     let activeNote = AppState.activeNote
     activeNote.content = noteContent
-    console.log("active note's content:", activeNote.content, "AppState notes", AppState.notes)
     activeNote.updatedDate = new Date()
     activeNote.wordCount = activeNote.content.split(' ').length
     activeNote.characterCount = activeNote.content.length
     AppState.emit("activeNote")
-    console.log("This is the notes array after a note is saved.", AppState.notes)
     _saveNotes()
   }
 
   createNote(noteData) {
     const newNote = new Note(noteData)
-    console.log('[NOTES SERVICE]createNote, newNote:', newNote)
     AppState.notes.push(newNote)
-    console.log(AppState.notes)
     AppState.emit('notes')
     let noteId = newNote.id
     this.setActiveNote(noteId)
@@ -35,9 +30,7 @@ class NotesService {
 
   setActiveNote(noteId) {
     let activeNote = AppState.notes.find(note => note.id == noteId)
-    console.log("Active note:", activeNote)
     AppState.activeNote = activeNote
-    console.log(activeNote, AppState.activeNote)
     AppState.emit("activeNote")
   }
 
@@ -52,11 +45,9 @@ class NotesService {
     _saveNotes()
 
     AppState.emit('notes')
+
+    AppState.activeNote = null  //This is so that setActiveNote will work
   }
-
-
-
-
 
 
 }

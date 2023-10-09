@@ -34,6 +34,28 @@ export class Pop {
     }
   }
 
+  static async confirmSave(title = 'Are you sure?', text = "You won't be able to revert this!", confirmButtonText = 'Yes', icon = 'warning') {
+    try {
+      // @ts-ignore
+      const res = await Swal.fire({
+        title,
+        text,
+        icon,
+        confirmButtonText,
+        showDenyButton: true,
+        reverseButtons: true,
+        confirmButtonColor: 'var(--bs-primary)',
+        denyButtonColor: 'var(--bs-secondary)',
+      })
+      if (res.isConfirmed) {
+        return true
+      }
+      return false
+    } catch (error) {
+      return false
+    }
+  }
+
   /**
    * @param {string} title The title text
    * @param {'success' | 'error' | 'info' | 'warning' | 'question'} icon
